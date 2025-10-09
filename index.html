@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drone Inspections - Fast, Safe, Affordable</title>
+  <style>
+    /* --- Reset & Base Styles --- */
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+      color: #333;
+      scroll-behavior: smooth;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    button {
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    /* --- Sticky Header --- */
+    header {
+      position: sticky;
+      top: 0;
+      background-color: rgba(255,255,255,0.95);
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    nav {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+    }
+    nav .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #0077cc;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+    nav ul li a:hover {
+      color: #005fa3;
+    }
+
+    /* --- Hero Section --- */
+    .hero {
+      position: relative;
+      background: url('https://images.unsplash.com/photo-1597262975002-c5c3b14bbd62?auto=format&fit=crop&w=1400&q=80') no-repeat center center/cover;
+      height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #fff;
+      padding: 0 20px;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.35); /* subtle overlay for readability */
+      z-index: 0;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+    }
+    .hero p {
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
+    }
+    .hero button {
+      background-color: #0077cc;
+      color: #fff;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      border-radius: 8px;
+    }
+    .hero button:hover {
+      background-color: #005fa3;
+    }
+
+    /* --- Section Styles --- */
+    section {
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2.5rem;
+      color: #0077cc;
+    }
+
+    /* --- Features Section --- */
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 30px;
+    }
+    .feature {
+      flex: 1 1 250px;
+      text-align: center;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      background-color: #f9f9f9;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .feature:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+    }
+    .feature img {
+      width: 60px;
+      margin-bottom: 15px;
+    }
+
+    /* --- How It Works --- */
+    .steps {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 30px;
+    }
+    .step {
+      flex: 1 1 250px;
+      text-align: center;
+      padding: 20px;
+      transition: transform 0.3s;
+    }
+    .step:hover {
+      transform: translateY(-5px);
+    }
+    .step img {
+      width: 50px;
+      margin-bottom: 15px;
+    }
+
+    /* --- Gallery --- */
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .gallery img {
+      width: 300px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    /* --- Packages --- */
+    .packages {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .package {
+      flex: 1 1 250px;
+      background-color: #f9f9f9;
+      border-radius: 10px;
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .package:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+    }
+    .package h3 {
+      color: #0077cc;
+      margin-bottom: 15px;
+    }
+    .package button {
+      margin-top: 15px;
+      background-color: #0077cc;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+    }
+    .package button:hover {
+      background-color: #005fa3;
+    }
+
+    /* --- Booking Form --- */
+    .booking-form {
+      max-width: 600px;
+      margin: auto;
+    }
+    .booking-form input, .booking-form select, .booking-form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+    .booking-form button {
+      width: 100%;
+      padding: 15px;
+      background-color: #0077cc;
+      color: #fff;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 8px;
+    }
+    .booking-form button:hover {
+      background-color: #005fa3;
+    }
+
+    /* --- Trust Badges --- */
+    .trust-badges {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .trust-badges img {
+      width: 80px;
+      filter: grayscale(100%);
+      transition: filter 0.3s, transform 0.3s;
+    }
+    .trust-badges img:hover {
+      filter: none;
+      transform: scale(1.1);
+    }
+
+    /* --- Footer --- */
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 30px 20px;
+    }
+    footer a {
+      color: #fff;
+      margin: 0 10px;
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 768px) {
+      .features, .steps, .packages, .trust-badges {
+        flex-direction: column;
+        align-items: center;
+      }
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      .hero p {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <nav>
+      <div class="logo">DroneInspections</div>
+      <ul>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#packages">Packages</a></li>
+        <li><a href="#booking">Book Now</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Drone Roof & Property Inspections</h1>
+      <p>Fast, Safe, and Affordable Aerial Inspections for Homeowners & Businesses</p>
+      <button onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Schedule Your Inspection</button>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features">
+    <h2>Why Choose Us</h2>
+    <div class="features">
+      <div class="feature">
+        <img src="https://img.icons8.com/color/96/000000/speed.png"/>
+        <h3>Fast & Accurate</h3>
+        <p>Receive detailed inspection reports in 24–48 hours.</p>
+      </div>
+      <div class="feature">
+        <img src="https://img.icons8.com/color/96/000000/drone.png"/>
+        <h3>Safe & Non-Intrusive</h3>
+        <p>No climbing on roofs — fully FAA-certified drone operations.</p>
+      </div>
+      <div class="feature">
+        <img src="https://img.icons8.com/color/96/000000/report-card.png"/>
+        <h3>Professional Reports</h3>
+        <p>High-resolution images, video, and detailed notes for decisions.</p>
+      </div>
+      <div class="feature">
+        <img src="https://img.icons8.com/color/96/000000/verified-account.png"/>
+        <h3>Insured & Licensed</h3>
+        <p>Fully licensed, insured, and background-checked for your peace of mind.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section id="how-it-works">
+    <h2>How It Works</h2>
+    <div class="steps">
+      <div class="step">
+        <img src="https://img.icons8.com/color/48/000000/calendar.png"/>
+        <h3>Book Online</h3>
+        <p>Pick
