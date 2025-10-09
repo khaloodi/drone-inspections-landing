@@ -1,51 +1,372 @@
 /* --- Base & Reset --- */
-body, html { margin: 0; padding: 0; font-family: 'Roboto', sans-serif; color: #333; scroll-behavior: smooth;}
-a { text-decoration: none; color: inherit;}
-button { cursor: pointer; transition: 0.3s; }
-
-/* Header / Navigation */
-header { position: sticky; top: 0; background-color: rgba(255,255,255,0.95); z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.1);}
-nav { max-width: 1200px; margin:auto; display:flex; justify-content:space-between; align-items:center; padding:15px 20px;}
-nav .logo { font-size:1.5rem; font-weight:bold; color:#0077cc;}
-nav ul { list-style:none; display:flex; gap:20px;}
-nav ul li a:hover { color:#005fa3; }
-
-/* Hero Section */
-.hero { position:relative; background: url('../images/hero.jpg') no-repeat center/cover; height:90vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; color:#fff; padding:0 20px;}
-.hero::after { content:''; position:absolute; top:0; left:0; right:0; bottom:0; background: rgba(0,0,0,0.35); z-index:0;}
-.hero-content { position:relative; z-index:1;}
-.hero h1 { font-size:3rem; margin-bottom:20px; text-shadow:2px 2px 8px rgba(0,0,0,0.6);}
-.hero p { font-size:1.5rem; margin-bottom:30px; text-shadow:1px 1px 5px rgba(0,0,0,0.6);}
-.hero button { background-color:#0077cc; color:#fff; border:none; padding:15px 30px; font-size:1.2rem; border-radius:8px;}
-.hero button:hover { background-color:#005fa3; }
-
-/* Sections */
-section { padding:60px 20px; max-width:1200px; margin:auto;}
-h2 { text-align:center; margin-bottom:40px; font-size:2.5rem; color:#0077cc;}
-
-/* Features, Steps, Packages, Gallery */
-.features, .steps, .packages, .gallery, .trust-badges { display:flex; flex-wrap:wrap; justify-content:space-around; gap:30px; }
-.feature, .step, .package { flex:1 1 250px; text-align:center; padding:20px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1); background-color:#f9f9f9; transition: transform 0.3s, box-shadow 0.3s;}
-.feature:hover, .step:hover, .package:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0,0,0,0.15);}
-.feature img, .step img { margin-bottom:15px;}
-.gallery img { width:300px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1); transition: transform 0.3s;}
-.gallery img:hover { transform: scale(1.05);}
-
-/* Booking Form */
-.booking-form { max-width:600px; margin:auto;}
-.booking-form input, .booking-form select, .booking-form textarea { width:100%; padding:12px; margin-bottom:15px; border-radius:6px; border:1px solid #ccc; font-size:1rem;}
-.booking-form button { width:100%; padding:15px; background-color:#0077cc; color:#fff; font-size:1.2rem; border:none; border-radius:8px;}
-.booking-form button:hover { background-color:#005fa3;}
-
-/* Trust Badges */
-.trust-badges { display:flex; justify-content:center; gap:30px; margin-top:40px;}
-.trust-badges img { width:80px; filter:grayscale(100%); transition:filter 0.3s, transform 0.3s;}
-.trust-badges img:hover { filter:none; transform:scale(1.1);}
-
-/* Footer */
-footer { background-color:#333; color:#fff; text-align:center; padding:30px 20px;}
-footer a { color:#fff; margin:0 10px;}
-
-/* --- Mobile Responsive --- */
-@media (max-width:768px){
-  nav
+* {
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    scroll-behavior: smooth;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  button {
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  /* --- Header / Navigation --- */
+  header {
+    position: sticky;
+    top: 0;
+    background-color: rgba(255,255,255,0.95);
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  
+  nav {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    position: relative;
+  }
+  
+  nav .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #0077cc;
+  }
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    transition: max-height 0.3s ease-in-out;
+  }
+  
+  nav ul li {
+    position: relative;
+  }
+  
+  nav ul li a:hover {
+    color: #005fa3;
+  }
+  
+  /* Hamburger - hidden on desktop */
+  .hamburger {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+  
+  /* Dropdown menu */
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    margin-top: 5px;
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    min-width: 150px;
+    z-index: 100;
+  }
+  
+  .dropdown-menu li {
+    padding: 10px;
+  }
+  
+  .dropdown-menu li a {
+    color: #0077cc;
+  }
+  
+  .dropdown-menu li:hover {
+    background-color: #f0f0f0;
+  }
+  
+  /* Show dropdown on hover for desktop */
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+  
+  /* --- Hero Section --- */
+  .hero {
+    position: relative;
+    background: url('../images/hero.jpg') no-repeat center/cover;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    padding: 0 20px;
+    width: 100%;
+  }
+  
+  .hero::after {
+    content: '';
+    position: absolute;
+    top:0; left:0; right:0; bottom:0;
+    background: rgba(0,0,0,0.35);
+    z-index: 0;
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+  }
+  
+  .hero p {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
+  }
+  
+  .hero button {
+    background-color: #0077cc;
+    color: #fff;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border-radius: 8px;
+  }
+  
+  .hero button:hover {
+    background-color: #005fa3;
+  }
+  
+  /* --- Sections --- */
+  section {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: auto;
+    width: 100%;
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+    color: #0077cc;
+  }
+  
+  /* --- Features, Steps, Packages, Gallery --- */
+  .features, .steps, .packages, .gallery, .trust-badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 30px;
+  }
+  
+  .feature, .step, .package {
+    flex: 1 1 250px;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    background-color: #f9f9f9;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .feature:hover, .step:hover, .package:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+  }
+  
+  .feature img, .step img {
+    margin-bottom: 15px;
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  .gallery img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+  }
+  
+  .gallery img:hover {
+    transform: scale(1.05);
+  }
+  
+  /* --- Booking Form --- */
+  .booking-form {
+    max-width: 600px;
+    margin: auto;
+    width: 100%;
+  }
+  
+  .booking-form input,
+  .booking-form select,
+  .booking-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+  }
+  
+  .booking-form button {
+    width: 100%;
+    padding: 15px;
+    background-color: #0077cc;
+    color: #fff;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 8px;
+  }
+  
+  .booking-form button:hover {
+    background-color: #005fa3;
+  }
+  
+  /* --- Trust Badges --- */
+  .trust-badges {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+  }
+  
+  .trust-badges img {
+    width: 80px;
+    filter: grayscale(100%);
+    transition: filter 0.3s, transform 0.3s;
+  }
+  
+  .trust-badges img:hover {
+    filter: none;
+    transform: scale(1.1);
+  }
+  
+  /* --- Footer --- */
+  footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 30px 20px;
+  }
+  
+  footer a {
+    color: #fff;
+    margin: 0 10px;
+  }
+  
+  /* --- Mobile Responsive --- */
+  @media (max-width: 768px) {
+  
+    /* Hamburger visible, hide nav initially */
+    .hamburger {
+      display: block;
+    }
+  
+    nav ul {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-in-out;
+      background-color: #fff;
+      position: absolute;
+      top: 65px;
+      left: 0;
+      padding: 0;
+      margin: 0;
+    }
+  
+    nav ul li {
+      width: 100%;
+      text-align: center;
+      padding: 15px 0;
+      border-bottom: 1px solid #eee;
+    }
+  
+    /* Dropdown menu adjustments */
+    .dropdown-menu {
+      position: static;
+      box-shadow: none;
+      border-radius: 0;
+    }
+  
+    .dropdown.open .dropdown-menu {
+      display: block;
+    }
+  
+    /* Hero adjustments */
+    .hero {
+      height: 70vh;
+      padding: 0 15px;
+    }
+  
+    .hero h1 {
+      font-size: 2rem;
+    }
+  
+    .hero p {
+      font-size: 1.1rem;
+    }
+  
+    .hero button {
+      width: 100%;
+      padding: 15px 0;
+      font-size: 1.1rem;
+    }
+  
+    /* Sections stack vertically */
+    .features, .steps, .packages, .trust-badges, .gallery {
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+  
+    .feature, .step, .package {
+      flex: 1 1 90%;
+      max-width: 400px;
+      padding: 20px;
+    }
+  
+    /* Form adjustments */
+    .booking-form input,
+    .booking-form select,
+    .booking-form textarea {
+      padding: 14px;
+      font-size: 1rem;
+    }
+  
+    .booking-form button {
+      padding: 16px;
+      font-size: 1.1rem;
+    }
+  
+    .gallery img {
+      width: 90%;
+    }
+  
+    .hero::after {
+      background: rgba(0,0,0,0.45);
+    }
+  }
+  
