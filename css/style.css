@@ -12,9 +12,11 @@ section {
   text-align: center;
 }
 
+/* check why this didn't work */
 ul {
   list-style-type: none;
 }
+
 
 h2 {
   margin-bottom: 2rem;
