@@ -70,6 +70,7 @@ nav {
   top: 100%;
   left: 0;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  z-index: 2000;
 }
 
 .dropdown.open .dropdown-menu {
@@ -97,7 +98,9 @@ nav {
   cursor: pointer;
 }
 
-/* MOBILE NAV */
+/* =============================
+   MOBILE NAV
+============================= */
 @media (max-width: 768px) {
   nav {
     flex-wrap: wrap;
@@ -111,6 +114,38 @@ nav {
     max-height: 0;
     background: rgba(255,255,255,0.97);
     border-top: 1px solid #eee;
+    position: relative;
+  }
+
+  #nav-links.show {
+    max-height: 600px; /* expanded when open */
+    padding: 1rem 0;
+  }
+
+  .dropdown-menu {
+    position: static;
+    display: none;
+    box-shadow: none;
+    padding: 0;
+    background: transparent;
+  }
+
+  .dropdown.open .dropdown-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-left: 1.5rem;
+  }
+
+  .dropdown-menu li a {
+    background: white;
+    border-radius: 5px;
+    padding: 0.5rem;
+  }
+
+  .dropdown-menu li a:hover {
+    background: #0078ff;
+    color: white;
   }
 
   .hamburger {
@@ -192,7 +227,9 @@ nav {
   background-color: #0077b6;
 }
 
-/* MOBILE HERO */
+/* =============================
+   MOBILE HERO
+============================= */
 @media (max-width: 768px) {
   .hero {
     height: 80vh;
