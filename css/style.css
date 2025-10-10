@@ -1,6 +1,4 @@
-/* =============================
-   BASE STYLES
-============================= */
+/* ============================= BASE STYLES ============================= */
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
@@ -9,9 +7,20 @@ body {
   overflow-x: hidden;
 }
 
-/* =============================
-   NAVBAR
-============================= */
+section {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+ul {
+  list-style-type: none;
+}
+
+h2 {
+  margin-bottom: 2rem;
+}
+
+/* ============================= NAVBAR ============================= */
 header {
   position: fixed;
   top: 0;
@@ -66,11 +75,10 @@ nav {
   position: absolute;
   background: white;
   border-radius: 5px;
-  padding: 0.5rem;
+  padding: 0.5rem 0;
   top: 100%;
   left: 0;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  z-index: 2000;
 }
 
 .dropdown.open .dropdown-menu {
@@ -98,9 +106,7 @@ nav {
   cursor: pointer;
 }
 
-/* =============================
-   MOBILE NAV
-============================= */
+/* ============================= MOBILE NAV ============================= */
 @media (max-width: 768px) {
   nav {
     flex-wrap: wrap;
@@ -109,38 +115,35 @@ nav {
   #nav-links {
     flex-direction: column;
     width: 100%;
-    gap: 1rem;
+    gap: 0;
     overflow: hidden;
     max-height: 0;
     background: rgba(255,255,255,0.97);
     border-top: 1px solid #eee;
-    position: relative;
   }
 
   #nav-links.show {
-    max-height: 600px; /* expanded when open */
-    padding: 1rem 0;
+    max-height: 600px;
   }
 
   .dropdown-menu {
     position: static;
     display: none;
     box-shadow: none;
-    padding: 0;
+    padding-left: 1.5rem;
     background: transparent;
+    flex-direction: column;
   }
 
   .dropdown.open .dropdown-menu {
     display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding-left: 1.5rem;
   }
 
   .dropdown-menu li a {
     background: white;
     border-radius: 5px;
     padding: 0.5rem;
+    margin-bottom: 0.25rem;
   }
 
   .dropdown-menu li a:hover {
@@ -153,9 +156,7 @@ nav {
   }
 }
 
-/* =============================
-   HERO SECTION
-============================= */
+/* ============================= HERO SECTION ============================= */
 .hero {
   position: relative;
   height: 100vh;
@@ -163,18 +164,17 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
   text-align: center;
+  color: white;
 }
 
-.hero video {
+.hero-video {
   position: absolute;
   top: 50%;
   left: 50%;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center center;
   transform: translate(-50%, -50%);
   z-index: 0;
 }
@@ -182,9 +182,9 @@ nav {
 .hero::after {
   content: "";
   position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.35);
+  top:0; left:0;
+  width:100%; height:100%;
+  background: rgba(0,0,0,0.35);
   z-index: 1;
 }
 
@@ -192,10 +192,9 @@ nav {
   position: relative;
   z-index: 2;
   max-width: 800px;
-  padding: 1rem 2rem;
-  background: rgba(0, 0, 0, 0.3);
+  padding: 2rem;
+  background: rgba(0,0,0,0.3);
   border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
 }
 
 .hero-content h1 {
@@ -208,61 +207,22 @@ nav {
   margin-bottom: 1.5rem;
 }
 
-.cta-button,
-.hero-content button {
+.cta-button {
   display: inline-block;
   padding: 0.75rem 1.5rem;
   background-color: #00b4d8;
   color: white;
   font-weight: bold;
   border-radius: 8px;
-  border: none;
-  cursor: pointer;
   text-decoration: none;
-  transition: background 0.3s ease;
+  transition: background 0.3s;
 }
 
-.cta-button:hover,
-.hero-content button:hover {
+.cta-button:hover {
   background-color: #0077b6;
 }
 
-/* =============================
-   MOBILE HERO
-============================= */
-@media (max-width: 768px) {
-  .hero {
-    height: 80vh;
-  }
-
-  .hero-content {
-    padding: 1rem;
-    max-width: 90%;
-    background: rgba(0, 0, 0, 0.5);
-  }
-
-  .hero-content h1 {
-    font-size: 1.8rem;
-  }
-
-  .hero-content p {
-    font-size: 1rem;
-  }
-
-  .cta-button {
-    padding: 0.6rem 1.2rem;
-    font-size: 0.9rem;
-  }
-}
-
-/* =============================
-   MAIN SECTIONS
-============================= */
-section {
-  padding: 4rem 2rem;
-  text-align: center;
-}
-
+/* ============================= CONTENT CARDS ============================= */
 .features, .steps, .packages {
   display: flex;
   flex-wrap: wrap;
@@ -278,9 +238,7 @@ section {
   width: 280px;
 }
 
-/* =============================
-   BOOKING FORM
-============================= */
+/* ============================= BOOKING FORM ============================= */
 .booking-form {
   display: flex;
   flex-direction: column;
@@ -289,8 +247,8 @@ section {
   gap: 1rem;
 }
 
-.booking-form input,
-.booking-form select,
+.booking-form input, 
+.booking-form select, 
 .booking-form textarea {
   padding: 0.8rem;
   border: 1px solid #ccc;
@@ -307,9 +265,11 @@ section {
   cursor: pointer;
 }
 
-/* =============================
-   FOOTER
-============================= */
+.booking-form button:hover {
+  background: #005fcc;
+}
+
+/* ============================= FOOTER ============================= */
 footer {
   background: #111;
   color: #ccc;
@@ -317,11 +277,32 @@ footer {
   padding: 1rem;
 }
 
-/* =============================
-   MOBILE CONTENT CARDS
-============================= */
+/* ============================= MOBILE CONTENT CARDS ============================= */
 @media (max-width: 768px) {
   .feature, .step, .package {
     width: 100%;
+  }
+
+  .hero {
+    height: 80vh;
+  }
+
+  .hero-content {
+    padding: 1rem;
+    max-width: 90%;
+    background: rgba(0,0,0,0.5);
+  }
+
+  .hero-content h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+
+  .cta-button {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
   }
 }
