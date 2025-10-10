@@ -13,6 +13,10 @@ section {
 }
 
 /* check why this didn't work */
+#dropdown-menu li {
+  list-style-type: none;
+}
+
 ul {
   list-style-type: none;
 }
