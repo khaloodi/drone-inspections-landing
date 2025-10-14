@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/images/overwatch_logo.jpg" alt="Overwatch Drone Services Logo" width="300"/>
+  <img src="./images/overwatch_logo.jpg" alt="Overwatch Drone Services Logo" width="300"/>
 </p>
 
 <h1 align="center">Overwatch Drone Services</h1>
